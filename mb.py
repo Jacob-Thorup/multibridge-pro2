@@ -38,6 +38,11 @@ LIBUSB_PATHS = (
 
 HOST = "127.0.0.1"
 PORT = 8765
+# Desktop Video 10.3.7 is the last Mac release that still installs the Multibridge files.
+DESKTOP_VIDEO_URL = (
+    "https://www.blackmagicdesign.com/support/download/"
+    "8734bbe104b84c43bc3ef311fbd26d25/Mac%20OS%20X"
+)
 
 ANALOG_INPUTS = (
     ("component", "Use Analog Component Inputs"),
@@ -124,15 +129,17 @@ def require_blackmagic_install():
     """The USB and converter images stay in the official install. They are not bundled."""
     if not KEXT.is_file():
         raise SystemExit(
-            "Blackmagic Multibridge Utility is not installed, so there is no USB startup image to send.\n"
-            f"Expected the driver at:\n  {KEXT}\n"
-            "Install that utility, leave its files where the installer put them, and run this again.\n"
+            "Desktop Video 10.3.7 is not installed, so there is no Multibridge USB startup image to send.\n"
+            f"Download the Mac installer:\n  {DESKTOP_VIDEO_URL}\n"
+            "Later Desktop Video releases do not include the Multibridge files.\n"
+            f"After installing 10.3.7, the driver should be at:\n  {KEXT}\n"
             "This download does not include Blackmagic firmware."
         )
     if not CONVERTER_IMAGE.is_file():
         print(
-            "The converter image was not found, so a first-time load will not be possible.\n"
+            "The converter image from Desktop Video 10.3.7 was not found, so a first-time load will not be possible.\n"
             f"Expected:\n  {CONVERTER_IMAGE}\n"
+            f"Download:\n  {DESKTOP_VIDEO_URL}\n"
             "Settings still work when the converter is already running.",
             file=sys.stderr,
         )

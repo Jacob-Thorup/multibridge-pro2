@@ -6,7 +6,14 @@ It is for the Multibridge Pro 2 only. Leave the PCI Express cable unplugged. The
 
 ## Install
 
-1. Install [Blackmagic Multibridge Utility](https://www.blackmagicdesign.com/) the way you already have it. This download does not include Blackmagic’s USB startup image or converter image. Those files stay in the official install, and this program reads them from there when it needs them.
+1. Download Desktop Video 10.3.7 for Mac from Blackmagic:
+
+   https://www.blackmagicdesign.com/support/download/8734bbe104b84c43bc3ef311fbd26d25/Mac%20OS%20X
+
+   Blackmagic asks for a name and email, then the installer starts. Install that package. Later Desktop Video releases removed the Multibridge driver and converter image, so a current Desktop Video download will not work here.
+
+   The 10.3.7 driver does not load on a current Mac, including Apple Silicon. That is expected. This program reads the USB startup image and the converter image from that install, and it does not include its own copies of those files.
+
 2. Install Python 3 from [python.org](https://www.python.org/downloads/) or with Homebrew: `brew install python`
 3. Install libusb. If you do not have Homebrew, install it from [brew.sh](https://brew.sh), then run:
 
